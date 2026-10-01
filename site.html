@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal do Voluntariado | Trabalho para ONG</title>
+    <!-- Link para o arquivo CSS externo correto -->
+   <link rel="stylesheet" href="../css/style-site.css">
+</head>
+<body>
+    <!-- Topo da página com a navegação principal (id="sobre" adicionado para o link funcionar) -->
+    <header id="sobre">
+        <h1>Trabalho para ONG: Mãos que Transformam</h1>
+        <p>Conectando voluntários a causas que mudam o mundo</p>
+        <nav>
+    <ul>
+        <li><a href="/" data-link>Início</a></li>
+        <li><a href="/sobre" data-link>Quem Somos</a></li>
+        <li><a href="/causas" data-link>Nossas Causas</a></li>
+        <li><a href="/cadastro" data-link>Seja um Colaborador</a></li>
+        <li><a href="/como-ajudar" data-link>Como Ajudar</a></li>
+    </ul>
+</nav>
+
+            </ul>
+        </nav>
+        <!-- LINK CORRETO PARA A SUA IMAGEM -->
+        <img src="../imagens/voluntarios.jpg" alt="Voluntários unidos de mãos dadas" width="600" height="300">
+    </header>
+
+    <!-- ======================================================================= -->
+    <!-- CONTÊINER DA SPA: É aqui dentro que o JavaScript vai trocar os conteúdos -->
+    <!-- ======================================================================= -->
+    <div id="app">
+        <!-- O conteúdo padrão inicial (Home) fica aqui dentro -->
+        <main>
+            <!-- Seção principal voltada para as frentes de ação da ONG -->
+            <section id="causas">
+                <h2>Projetos de Impacto Urgente</h2>
+                
+                <!-- Conteúdo independente 1 -->
+                <article>
+                    <h3>Apoio à Educação Comunitária</h3>
+                    <!-- LINK CORRETO PARA A SUA IMAGEM -->
+                    <img src="imagens/criancas-estudando.jpg" alt="Crianças estudando" width="300">
+                    <p>O trabalho voluntário focado em reforço escolar e oficinas culturais tem transformado a realidade de jovens na periferia...</p>
+                    <!-- ADICIONADO: data-link para abrir o cadastro na SPA -->
+                    <a href="/cadastro" data-link>Quero ser voluntário</a>
+                </article>
+
+                <!-- Conteúdo independente 2 -->
+                <article>
+                    <h3>Arrecadação e Distribuição de Alimentos</h3>
+                    <!-- LINK CORRETO PARA A SUA IMAGEM -->
+                    <img src="imagens/alimentos.jpg" alt="Caixa com alimentos para doação" width="400">
+                    <p>Nossa força-tarefa atua no combate à fome, recolhendo doações e organizando a logística de entrega para famílias vulneráveis...</p>
+                    <!-- ADICIONADO: data-link para abrir o cadastro na SPA -->
+                    <a href="/cadastro" data-link>Doar agora</a>
+                </article>
+            </section>
+
+            <!-- Conteúdo secundário ou barra lateral -->
+            <aside id="como-ajudar-aside">
+                <h2>Transparência e Editais</h2>
+                <ul>
+                    <li><a href="#">Relatório de Impacto 2025</a></li>
+                    <!-- ADICIONADO: data-link para abrir o cadastro na SPA -->
+                    <li><a href="/cadastro" data-link>Vagas de Voluntariado Abertas</a></li>
+                </ul>
+            </aside>
+        </main>
+    </div>
+    <!-- ======================================================================= -->
+
+    <!-- Rodapé da página -->
+    <footer>
+        <p>&copy; 2026 Mãos que Transformam. Organização Não Governamental sem fins lucrativos.</p>
+    </footer>
+
+    <!-- ADICIONADO: Importação do seu código JavaScript do Roteador SPA -->
+    <script src="../js/router.js"></script>
+    <script src="../js/app.js"></script>
+</body>
+</html>

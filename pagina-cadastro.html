@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seja um Colaborador | Mãos que Transformam</title>
+    <link rel="stylesheet" href="../css/style-cadastro.css">
+</head>
+<body>
+
+    <header>
+        <h1>Mãos que Transformam</h1>
+        <p>Preencha os campos abaixo para fazer parte da nossa rede de apoio</p>
+        
+        <nav>
+            <input type="checkbox" id="menu-trigger">
+            <label for="menu-trigger" class="menu-toggle" aria-label="Abrir menu de navegação">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+            
+            <ul>
+                <!-- Ajustado os links para usar o roteamento SPA por Hash -->
+                <li><a href="/" data-link>Início</a></li>
+                <li><a href="/sobre" data-link>Quem Somos</a></li>
+                <li><a href="/causas" data-link>Nossas Causas</a></li>
+                <li><a href="/cadastro" data-link class="active">Seja um Colaborador</a></li>
+                <li><a href="/como-ajudar" data-link>Como Ajudar</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="form-container">
+            <h2>Formulário de Inscrição</h2>
+            <p>Escolha como você gostaria de atuar. Nossa equipe entrará em contato em breve.</p>
+            
+            <!-- CORRIGIDO: Apenas uma tag form com o id="form-cadastro" para o JS capturar -->
+            <form id="form-cadastro">
+                
+                <!-- Informações Pessoais Principais -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nome">Nome Completo</label>
+                        <input type="text" id="nome" name="nome" required placeholder="Digite seu nome completo">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-mail de Contato</label>
+                        <input type="email" id="email" name="email" required placeholder="exemplo@email.com">
+                    </div>
+                </div>
+
+                <!-- Bloco de Endereço Residencial Completo -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="cep">CEP</label>
+                        <input type="text" id="cep" name="cep" required placeholder="00000-000" maxlength="9">
+                    </div>
+                    <div class="form-group">
+                        <label for="logradouro">Rua / Avenida</label>
+                        <input type="text" id="logradouro" name="logradouro" required placeholder="Nome da rua, avenida, etc.">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="numero">Número</label>
+                        <input type="text" id="numero" name="numero" required placeholder="Nº">
+                    </div>
+                    <div class="form-group">
+                        <label for="complemento">Complemento (Opcional)</label>
+                        <input type="text" id="complemento" name="complemento" placeholder="Apto, Bloco, Casa, etc.">
+                    </div>
+                    <div class="form-group">
+                        <label for="bairro">Bairro</label>
+                        <input type="text" id="bairro" name="bairro" required placeholder="Digite seu bairro">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="cidade">Cidade</label>
+                        <input type="text" id="cidade" name="cidade" required placeholder="Digite sua cidade">
+                    </div>
+                    <div class="form-group">
+                        <label for="estado">Estado (UF)</label>
+                        <select id="estado" name="estado" required>
+                            <option value="" disabled selected>UF</option>
+                            <option value="AC">AC</option><option value="AL">AL</option><option value="AP">AP</option>
+                            <option value="AM">AM</option><option value="BA">BA</option><option value="CE">CE</option>
+                            <option value="DF">DF</option><option value="ES">ES</option><option value="GO">GO</option>
+                            <option value="MA">MA</option><option value="MT">MT</option><option value="MS">MS</option>
+                            <option value="MG">MG</option><option value="PA">PA</option><option value="PB">PB</option>
+                            <option value="PR">PR</option><option value="PE">PE</option><option value="PI">PI</option>
+                            <option value="RJ">RJ</option><option value="RN">RN</option><option value="RS">RS</option>
+                            <option value="RO">RO</option><option value="RR">RR</option><option value="SC">SC</option>
+                            <option value="SP">SP</option><option value="SE">SE</option><option value="TO">TO</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Preferências de Atuação -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="atuacao">Frente de Ação Preferencial</label>
+                        <select id="atuacao" name="atuacao" required>
+                            <option value="" disabled selected>Selecione uma opção</option>
+                            <option value="educacao">Apoio à Educação Comunitária</option>
+                            <option value="alimentos">Arrecadação e Logística de Alimentos</option>
+                            <option value="divulgacao">Comunicação e Divulgação das Causas</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="tipo-apoio">Modalidade de Colaboração</label>
+                        <select id="tipo-apoio" name="tipo-apoio" required>
+                            <option value="" disabled selected>Como deseja ajudar?</option>
+                            <option value="voluntario">Trabalho Voluntário (Doação de Tempo)</option>
+                            <option value="doador">Doador de Recursos/Insumos</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="mensagem">Fale um pouco sobre você (Opcional)</label>
+                    <textarea id="mensagem" name="mensagem" rows="5" placeholder="Conte-nos sobre suas experiências anteriores ou motivações..."></textarea>
+                </div>
+
+                <!-- CORRIGIDO: Bloco de botões único e limpo -->
+                <div style="display: flex; flex-direction: column; gap: var(--space-sm); margin-top: var(--space-md);">
+                    <button type="submit" class="btn-submit" style="margin-top: 0;">Enviar Cadastro</button>
+                    
+                    <!-- Ajustado com o data-link para voltar para a Home de maneira SPA -->
+                    <a href="/" data-link style="display: block; text-align: center; color: var(--text-muted); text-decoration: none; font-weight: 600; padding: var(--space-xs); transition: var(--transition);">
+                        Voltar para a Página Inicial
+                    </a>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Mãos que Transformam. Organização Não Governamental sem fins lucrativos.</p>
+    </footer>
+
+</body>
+</html>

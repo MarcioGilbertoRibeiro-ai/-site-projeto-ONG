@@ -1,0 +1,386 @@
+/* ==========================================
+   1. DESIGN SYSTEM: DESIGN TOKENS
+   ========================================== */
+:root {
+    /* Paleta de Cores (8 Cores Estritas) */
+    --primary: #1e40af;
+    --primary-hover: #1e3a8a;
+    --secondary: #ea580c;
+    --secondary-hover: #c2410c;
+    --bg-main: #f8fafc;
+    --bg-card: #ffffff;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+
+    /* Escala Tipográfica (5 Patamares) */
+    --fs-h1: 2.441rem;
+    --fs-h2: 1.953rem;
+    --fs-h3: 1.563rem;
+    --fs-body: 1rem;
+    --fs-small: 0.8rem;
+
+    /* Escala de Espaçamento Modular */
+    --space-xs: 0.5rem;   /* 8px */
+    --space-sm: 1rem;     /* 16px */
+    --space-md: 1.5rem;   /* 24px */
+    --space-lg: 2.5rem;   /* 40px */
+
+    /* Variáveis Globais de Interface */
+    --font-stack: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    --border-radius: 8px;
+    --transition: all 0.25s ease-in-out;
+    --container-max-width: 1200px;
+}
+
+/* ==========================================
+   2. RESET & REGRAS GLOBAIS
+   ========================================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-stack);
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    font-size: var(--fs-body);
+    line-height: 1.6;
+    padding: var(--space-md);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--border-radius);
+    display: block;
+}
+
+/* ==========================================
+   3. COMPONENTES INTERNOS & NAVEGAÇÃO HÍBRIDA
+   ========================================== */
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-lg);
+    text-align: center;
+}
+
+header h1 {
+    font-size: var(--fs-h1);
+    color: var(--primary);
+}
+
+header p {
+    color: var(--text-muted);
+}
+
+/* --- INFRAESTRUTURA LOGICA DO MENU (MOBILE-FIRST) --- */
+nav {
+    width: 100%;
+    position: relative;
+}
+
+/* Esconde o input checkbox de controle lógico */
+#menu-trigger {
+    display: none;
+}
+
+/* Botão Ícone de Hambúrguer (Visível no Mobile) */
+.menu-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    cursor: pointer;
+    margin: 0 auto var(--space-md) auto;
+    z-index: 10;
+}
+
+.menu-toggle span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background-color: var(--primary);
+    border-radius: 3px;
+    transition: var(--transition);
+}
+
+/* Container de Listagem Principal (Escondido por padrão no Mobile) */
+nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: var(--bg-card);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    
+    /* Estado Oculto com suporte a transição fluida */
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out, opacity 0.2s ease;
+}
+
+nav ul li {
+    width: 100%;
+    position: relative;
+}
+
+nav a {
+    display: block;
+    padding: var(--space-sm) var(--space-md);
+    color: var(--text-main);
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+nav a:hover {
+    color: var(--primary);
+    background-color: var(--bg-main);
+}
+
+/* --- LOGICA SUBMENU DROPDOWN (MOBILE) --- */
+/* Itens com filhos ganham comportamento de bloco acumulativo */
+.dropdown-parent > .dropdown-menu {
+    list-style: none;
+    background-color: var(--bg-main);
+    display: none; /* Escondido por padrão no clique mobile */
+    flex-direction: column;
+    padding-left: var(--space-md);
+}
+
+/* Acionamento do Dropdown via Hover ou Foco no Mobile/Tablet */
+.dropdown-parent:hover > .dropdown-menu,
+.dropdown-parent:focus-within > .dropdown-menu {
+    display: flex;
+}
+
+/* --- LOGICA DE ACIONAMENTO DO HAMBÚRGUER (MOBILE) --- */
+/* Quando o input estiver ativo, expande e exibe o menu principal */
+#menu-trigger:checked ~ ul {
+    max-height: 500px; /* Altura segura para abarcar os links */
+    opacity: 1;
+    padding: var(--space-xs) 0;
+}
+
+/* Transformação Visual: Linhas do Hambúrguer viram um "X" */
+#menu-trigger:checked ~ .menu-toggle span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+#menu-trigger:checked ~ .menu-toggle span:nth-child(2) {
+    opacity: 0;
+}
+#menu-trigger:checked ~ .menu-toggle span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+/* --- DEMAIS COMPONENTES INTERNOS --- */
+article {
+    background-color: var(--bg-card);
+    padding: var(--space-md);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+article h3 {
+    font-size: var(--fs-h3);
+    margin-bottom: var(--space-sm);
+}
+
+article img {
+    margin-bottom: var(--space-sm);
+    width: 100%;
+    object-fit: cover;
+    height: 200px;
+}
+
+article p {
+    margin-bottom: var(--space-md);
+    flex-grow: 1; 
+}
+
+article a {
+    display: block;
+    text-align: center;
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    font-weight: bold;
+    transition: var(--transition);
+    margin-top: auto;
+}
+
+article:nth-of-type(1) a { background-color: var(--primary); color: white; }
+article:nth-of-type(1) a:hover { background-color: var(--primary-hover); }
+
+article:nth-of-type(2) a { background-color: var(--secondary); color: white; }
+article:nth-of-type(2) a:hover { background-color: var(--secondary-hover); }
+
+aside {
+    background-color: var(--bg-card);
+    padding: var(--space-md);
+    border-radius: var(--border-radius);
+}
+
+aside h2 {
+    font-size: var(--fs-h3);
+    margin-bottom: var(--space-sm);
+}
+
+aside ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+aside a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+aside a:hover { text-decoration: underline; }
+
+footer {
+    text-align: center;
+    margin-top: var(--space-lg);
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--text-muted);
+    font-size: var(--fs-small);
+    color: var(--text-muted);
+}
+
+/* ==========================================
+   4. LAYOUT MACRO (CSS GRID DE 12 COLUNAS) - BASE MOBILE
+   ========================================== */
+main {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: var(--space-md);
+}
+
+#causas {
+    grid-column: span 12; 
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: var(--space-md);
+}
+
+#causas h2 {
+    grid-column: span 12;
+    font-size: var(--fs-h2);
+    border-bottom: 2px solid var(--primary);
+    padding-bottom: var(--space-xs);
+}
+
+#causas article { grid-column: span 12; }
+aside { grid-column: span 12; }
+
+/* ==========================================
+   5. ARQUITETURA RESPONSIVA (5 CENÁRIOS ADAPTATIVOS)
+   ========================================== */
+
+/* CENÁRIO 1: Smartphones em Modo Paisagem / Telas Compactas (min-width: 480px) */
+@media (min-width: 480px) {
+    body { padding: var(--space-md); }
+}
+
+/* CENÁRIO 2: Tablets / Dispositivos Médios (min-width: 768px) */
+@media (min-width: 768px) {
+    #causas article {
+        grid-column: span 6; 
+    }
+}
+
+/* CENÁRIO 3: Laptops e Desktops Reconfigurantes (min-width: 1024px) */
+@media (min-width: 1024px) {
+    main { gap: var(--space-lg); }
+    #causas { grid-column: span 9; }
+    aside { grid-column: span 3; height: fit-content; }
+
+    /* --- RESTAURAÇÃO COMPLETA DA NAVEGAÇÃO HORIZONTAL HORIZONTAL COM DROPDOWN --- */
+    .menu-toggle {
+        display: none; /* Desativa e oculta o botão hambúrguer */
+    }
+
+    nav ul {
+        display: flex;
+        flex-direction: row; /* Alinha os botões lado a lado */
+        justify-content: center;
+        gap: var(--space-md);
+        background-color: transparent;
+        box-shadow: none;
+        overflow: visible;
+        max-height: none;
+        opacity: 1;
+    }
+
+    nav ul li {
+        width: auto; /* Itens ocupam apenas sua largura textual */
+    }
+
+    nav a {
+        padding: var(--space-xs) var(--space-sm);
+    }
+    nav a:hover {
+        background-color: transparent;
+    }
+
+    /* --- COMPORTAMENTO DO DROPDOWN EM TELAS GRANDES --- */
+    .dropdown-parent > .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        display: flex;
+        flex-direction: column;
+        background-color: var(--bg-card);
+        min-width: 200px;
+        padding: var(--space-xs) 0;
+        border-radius: var(--border-radius);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        padding-left: 0;
+        z-index: 100;
+        
+        /* Ocultação por opacidade e ponteiro para permitir transições suaves */
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        transition: var(--transition);
+    }
+
+    /* Exibição do Dropdown Fluido no Hover */
+    .dropdown-parent:hover > .dropdown-menu,
+    .dropdown-parent:focus-within > .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    .dropdown-menu a {
+        font-size: var(--fs-small);
+        font-weight: 500;
+    }
+}
+
+/* CENÁRIO 4: Desktops de Alta Resolução / Monitores Padrão (min-width: 1200px) */
+@media (min-width: 1200px) {
+    main { gap: 3rem; }
+    header { text-align: left; align-items: flex-start; }
+}
+
+/* CENÁRIO 5: Desktops Panorâmicos / Telas Ultra-Wide (min-width: 1440px) */
+@media (min-width: 1440px) {
+    main { max-width: 1360px; }
+}
